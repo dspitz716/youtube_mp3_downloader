@@ -6,10 +6,11 @@ from tkinter import filedialog
 def main():
 
     root = tk.Tk()
+    root.wm_attributes('-topmost', 1)
     root.withdraw()
     print("Select location for mp3 download \n>>")
-    dest = filedialog.askdirectory()
-    url = str(input("Enter the URL of the video you want to download: \n>> "))
+    dest = filedialog.askdirectory(parent=root)
+    url = str(input("Enter the URL of the video/playlist you want to download: \n>> "))
     youtube = YoutubeDownloader(url, dest)
     youtube.download()
 
