@@ -11,7 +11,7 @@ def main():
     dest = filedialog.askdirectory()
     url = str(input("Enter the URL of the video you want to download: \n>> "))
     youtube = YoutubeDownloader(url, dest)
-    youtube.download_single()
+    youtube.download()
 
 
 

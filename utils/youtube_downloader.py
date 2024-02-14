@@ -1,4 +1,5 @@
 from pytube import YouTube
+from pytube import Playlist
 import os
 
 
@@ -8,17 +9,34 @@ class YoutubeDownloader:
         self.url = url
         self.dest = dest
 
-    def download_single(self):
-        try:
-            yt = YouTube(self.url)
-            video = yt.streams.filter(only_audio=True).first()
-            destination = self.dest
-            out = video.download(output_path=destination)
-            base, ext = os.path.splitext(out)
-            new_file = base + '.mp3'
-            os.rename(out, new_file)
-            print(yt.title + " has been successfully downloaded.")
-        except KeyError:
-            print("Unable to fetch video information. Please check the video URL or your network connection.")
-        except FileExistsError:
-            print("File already exists in location")
+
+    def object_generator(self, url):
+        url = url
+        if str.find('list') in url:
+            playlist = Playlist(url)
+            pl = []
+            for video in playlist.video_urls:
+                pl.append(video)
+            return playlist
+        
+        else:
+            yt = [url]
+            return yt
+
+    def download(self):
+        videos = self.object_generator(self.url)
+        for video in videos:
+
+            try:
+                yt = YouTube(video)
+                video = yt.streams.filter(only_audio=True).first()
+                destination = self.dest
+                out = video.download(output_path=destination)
+                base, ext = os.path.splitext(out)
+                new_file = base + '.mp3'
+                os.rename(out, new_file)
+                print(yt.title + " has been successfully downloaded.")
+            except KeyError:
+                print("Unable to fetch video information. Please check the video URL or your network connection.")
+            except FileExistsError:
+                print("File already exists in location")
