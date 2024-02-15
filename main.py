@@ -1,20 +1,7 @@
-from utils.youtube_downloader import YoutubeDownloader
-import os
-import tkinter as tk
-from tkinter import filedialog
 
-def main():
+from form import Gui
 
-    root = tk.Tk()
-    root.wm_attributes('-topmost', 1)
-    root.withdraw()
-    print("Select location for mp3 download \n>>")
-    dest = filedialog.askdirectory(parent=root)
-    url = str(input("Enter the URL of the video/playlist you want to download: \n>> "))
-    youtube = YoutubeDownloader(url, dest)
-    youtube.download()
-
-
-
+    
 if __name__ == '__main__':
-    main()
+    gui = Gui()
+    gui.run()
