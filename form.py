@@ -14,14 +14,11 @@ class Gui:
         self.root.geometry("600x400")
 
         # declaring string variable
-        # for storing name and password
         url_var = tk.StringVar()
         play_var = tk.StringVar()
 
 
-        # defining a function that will
-        # get the name and password and
-        # print them on the screen
+        # defining a function that will launch download method
         def submit():
             url = url_var.get()
             playlist = play_var.get()
@@ -29,9 +26,6 @@ class Gui:
 
             youtube = YoutubeDownloader(url, filepath, playlist)
             youtube.download()
-
-            #url_var.set("")
-            #passw_var.set("")
 
 
         # creating a label for
@@ -42,11 +36,11 @@ class Gui:
         # name using widget Entry
         name_entry = tk.Entry(self.root, textvariable=url_var, font=('calibre', 10, 'normal'))
 
-        # creating a label for password
+        #playlist download name
         play_label = tk.Label(self.root, text='Download Whole Playlist? y/n (only req. for songs from playlist)', font=('calibre', 10, 'bold'))
         play_entry = tk.Entry(self.root, textvariable=play_var, font=('calibre', 10, 'normal'))
 
-        # creating a entry for password
+        # opens file explorer
         def browsefunc():
             global filepath
             filepath = filedialog.askdirectory()
@@ -58,7 +52,7 @@ class Gui:
 
 
         pathlabel = Label(self.root)
-        #passw_var = str(pathlabel)
+        
 
 
         # creating a button using the widget
