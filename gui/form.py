@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import filedialog
+from tkinter import *
 
 root = tk.Tk()
 
@@ -19,7 +21,7 @@ def submit():
     password = passw_var.get()
 
     print("The name is : " + name)
-    print("The password is : " + password)
+    print("The password is : " + filename)
 
     name_var.set("")
     passw_var.set("")
@@ -37,7 +39,17 @@ name_entry = tk.Entry(root, textvariable=name_var, font=('calibre', 10, 'normal'
 passw_label = tk.Label(root, text='Password', font=('calibre', 10, 'bold'))
 
 # creating a entry for password
-passw_entry = tk.Entry(root, textvariable=passw_var, font=('calibre', 10, 'normal'), show='*')
+def browsefunc():
+    global filename
+    filename = filedialog.askdirectory()
+    pathlabel.config(text=filename)
+
+browsebutton = Button(root, text="Browse", command=browsefunc)
+
+
+pathlabel = Label(root)
+#passw_var = str(pathlabel)
+
 
 # creating a button using the widget
 # Button that will call the submit function
@@ -48,8 +60,8 @@ sub_btn = tk.Button(root, text='Submit', command=submit)
 # method
 name_label.grid(row=0, column=0)
 name_entry.grid(row=0, column=1)
-passw_label.grid(row=1, column=0)
-passw_entry.grid(row=1, column=1)
+browsebutton.grid(row=1, column=0)
+pathlabel.grid(row=1, column=1)
 sub_btn.grid(row=2, column=1)
 
 # performing an infinite loop
