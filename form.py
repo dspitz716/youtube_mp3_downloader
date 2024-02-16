@@ -21,10 +21,9 @@ class Gui:
         # defining a function that will launch download method
         def submit():
             url = url_var.get()
-            playlist = play_var.get()
             #password = passw_var.get()
 
-            youtube = YoutubeDownloader(url, filepath, playlist)
+            youtube = YoutubeDownloader(url, filepath)
             youtube.download()
 
 
@@ -35,10 +34,6 @@ class Gui:
         # creating a entry for input
         # name using widget Entry
         name_entry = tk.Entry(self.root, textvariable=url_var, font=('calibre', 10, 'normal'))
-
-        #playlist download name
-        play_label = tk.Label(self.root, text='Download Whole Playlist? y/n (only req. for songs from playlist)', font=('calibre', 10, 'bold'))
-        play_entry = tk.Entry(self.root, textvariable=play_var, font=('calibre', 10, 'normal'))
 
         # opens file explorer
         def browsefunc():
@@ -64,12 +59,10 @@ class Gui:
         # method
         name_label.grid(row=0, column=0)
         name_entry.grid(row=0, column=1)
-        play_label.grid(row=1, column=0)
-        play_entry.grid(row=1, column=1)
-        browse_label.grid(row=2, column=0)
-        browsebutton.grid(row=2, column=1)
-        pathlabel.grid(row=2, column=2)
-        sub_btn.grid(row=3, column=1)
+        browse_label.grid(row=1, column=0)
+        browsebutton.grid(row=1, column=1)
+        pathlabel.grid(row=1, column=2)
+        sub_btn.grid(row=2, column=1)
 
         # performing an infinite loop
         # for the window to display

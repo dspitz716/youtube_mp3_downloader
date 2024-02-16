@@ -5,46 +5,29 @@ import os
 
 
 class YoutubeDownloader:
-    def __init__(self, url: str, dest: str, playlist: str):
+    def __init__(self, url: str, dest: str):
         self.url = url
         self.dest = dest
-        self.playlist = playlist
 
-
-    def object_generator(self, url, playlist):
+    def object_generator(self, url):
         url = url
         if 'com/play' in url:
             playlist = Playlist(url)
             pl = []
             for video in playlist.video_urls:
                 pl.append(video)
-            return playlist
-        
-        elif '&list' in url:
-        
-            yn = str(playlist)
-            if yn.lower() == 'y':
-                playlist = Playlist(url)
-                pl = []
-                for video in playlist.video_urls:
-                    pl.append(video)
-                return playlist
-            elif yn.lower() == 'n':
-                yt = [url]
-                return yt
-            else:
-                print(f'''Please respond y/n''')
-                return None
-                    
-                    
-
+            return pl
+                                 
         else:
             yt = [url]
             return yt
 
+                    
+                
+
 
     def download(self):
-        videos = self.object_generator(self.url, self.playlist)
+        videos = self.object_generator(self.url)
         try:
             for video in videos:
                 try:
