@@ -5,11 +5,9 @@ import os
 
 
 class YoutubeDownloader:
-    def __init__(self, url: str, dest: str, playlist: str):
+    def __init__(self, url: str, dest: str):
         self.url = url
         self.dest = dest
-        self.playlist = playlist
-
 
     def object_generator(self, url):
         url = url
@@ -29,7 +27,7 @@ class YoutubeDownloader:
 
 
     def download(self):
-        videos = self.object_generator(self.url, self.playlist)
+        videos = self.object_generator(self.url)
         try:
             for video in videos:
                 try:
