@@ -1,7 +1,9 @@
 from pytube import YouTube
 from pytube import Playlist
 import os
+from pytube.innertube import _default_clients
 
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 class YoutubeDownloader:
