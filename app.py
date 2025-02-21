@@ -2,8 +2,8 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
-from pytube import YouTube
-from pytube import Playlist
+from pytubefix import YouTube
+from pytubefix import Playlist
 import os
 
 ######COMBINED ALL MODULES INTO 1 FILE TO USE WITH PYINSTALLER EASILY
@@ -34,7 +34,7 @@ class YoutubeDownloader:
         try:
             for video in videos:
                 try:
-                    yt = YouTube(video)
+                    yt = YouTube(video, use_oauth=False)
                     video = yt.streams.filter(only_audio=True).first()
                     destination = self.dest
                     out = video.download(output_path=destination)
