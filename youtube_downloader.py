@@ -1,5 +1,5 @@
-from pytube import YouTube
-from pytube import Playlist
+from pytubefix import YouTube
+from pytubefix import Playlist
 import os
 from pytube.innertube import _default_clients
 
